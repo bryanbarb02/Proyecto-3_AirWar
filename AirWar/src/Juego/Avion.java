@@ -45,11 +45,11 @@ public class Avion {
      */
     public Avion(String name, int rS, int age, int resistance, String classType){
         
-        ImageIcon i = new ImageIcon(this.getClass().getResource("/images/dragon1.gif"));
+        ImageIcon i = new ImageIcon(this.getClass().getResource("/images/avion4.png"));
         image1 = i.getImage();
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/dragon2.gif"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/avion2.png"));
         image2 = ii.getImage();
-        ImageIcon iii = new ImageIcon(this.getClass().getResource("/images/dragon3.gif"));
+        ImageIcon iii = new ImageIcon(this.getClass().getResource("/images/avion3.png"));
         image3 = iii.getImage();
         
         

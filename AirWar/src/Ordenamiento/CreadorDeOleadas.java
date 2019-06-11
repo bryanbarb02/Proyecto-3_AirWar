@@ -182,13 +182,13 @@ public class CreadorDeOleadas {
      * @return - clase
      */
     private String generateClass(){
-        //Si no hay un Comandante aun
-        if (!comandanteExists){
-            this.comandanteExists = true;
-            return "Comandante";
-        }
-        //No se puede repetir el comandante
-        else {
+//        //Si no hay un Comandante aun
+//        if (!comandanteExists){
+//            this.comandanteExists = true;
+//            return "Comandante";
+//        }
+//        //No se puede repetir el comandante
+//        else {
             //Lista con las clases predefinidas para los Dragones
             String[] clases = {"Capitan", "Infante"};
 
@@ -197,7 +197,7 @@ public class CreadorDeOleadas {
 
             //Devuelve la clase accesada
             return clases[indice];
-        }
+//        }
     }
 
     /**
