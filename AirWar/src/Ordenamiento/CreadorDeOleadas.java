@@ -22,8 +22,8 @@ public class CreadorDeOleadas {
 
     public Avion newDragon(){
         //Cada dragon es creado con atributos aleatorios por sus respectivos métodos.
-        Avion dragon = new Avion(generateName(), generateSpeed(), generateAge(), generateResistence(), generateClass());
-        return dragon;
+        Avion avion = new Avion(generateName(), generateSpeed(), generateAge(), generateResistence(), generateClass());
+        return avion;
     }
 
     /**
@@ -37,15 +37,15 @@ public class CreadorDeOleadas {
         //Son aregados la cantidad de Dragones anteriormente dada a una lista enlazada.
         for (int i = 1; i <= cantidad; i++){
             //Crea un nuevo dragon con atributos aleatorios
-            Avion dragon = newDragon();
+            Avion avion = newDragon();
             //Se le agregan las coordenadas para ser mostrado en pantalla
-            dragon.generateCoords(i);
+            avion.generateCoords(i);
             //Se le agrega un padre, menos al primero
-            if(i!=1){
-                dragon.setPadre(generateFamily(dragon));
-            }
+//            if(i!=1){
+//                avion.setPadre(generateFamily(avion));
+//            }
             //Se agrega a la lista.
-            oleada.add(dragon);
+            oleada.add(avion);
         }
 
         //Retorna la oleada

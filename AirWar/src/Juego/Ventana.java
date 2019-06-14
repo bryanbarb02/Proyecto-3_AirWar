@@ -1,5 +1,7 @@
 package Juego;
 
+import GrafoMapa.*;
+import GrafoMapa.ListaGrafo;
 import Ordenamiento.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -23,8 +25,12 @@ import javax.swing.ImageIcon;
 public class Ventana extends JPanel implements ActionListener {
     public static int nivel = 1; //Max 7                            //Pasarian 126 cambios de alineacion
     public static int cantDragones = 6; //Max 30
+    
     public static CreadorDeOleadas creador = new CreadorDeOleadas();
     public static Lista oleada = new Lista();
+    
+    public static CrearGrafo crearGrafo = new CrearGrafo();
+    public static ListaGrafo lGrafo = new ListaGrafo();
     
     private Image image;
     private Timer timer;
@@ -55,8 +61,12 @@ public class Ventana extends JPanel implements ActionListener {
         
         bateriaantiaerea = new BateriaAntiAerea(); 
         
-        oleada = creador.newOleada();        
-              
+        oleada = creador.newOleada();
+
+        lGrafo = crearGrafo.newGrafo();
+        
+        
+        
         lay = "aleatorio";
         Vidas = 3;
         Destruidos = 0;
@@ -92,14 +102,17 @@ public class Ventana extends JPanel implements ActionListener {
         g2d.drawImage(bateriaantiaerea.getImage(), bateriaantiaerea.getX(), bateriaantiaerea.getY(), this);
         
         // Llamada para dibujar la oleada de Dragones
-        draw(oleada);
+        drawAviones(oleada);
+        drawGrafo(lGrafo);
                     
         // draw Fuego
         ArrayList<Proyectil> proyactil = bateriaantiaerea.getfuego();
         for(int i = 0; i < proyactil.size(); i++){
             Proyectil l = proyactil.get(i);
             g2d.drawImage(l.getImage(), l.getX(), l.getY(), this);
+            
         }
+        
         
         g2d.drawImage(layout.getImage(), layout.getX(),layout.getY(),this);
         
@@ -122,8 +135,17 @@ public class Ventana extends JPanel implements ActionListener {
         g.dispose();
     }
     
+    private void drawGrafo(ListaGrafo grafo){
+        // draw Dragones
+        NodoGrafo temp = grafo.getHead();
+        while (temp != null){
+            g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
+            temp = temp.getNext();
+        }
+        
+    }
     
-    private void draw(Lista oleada){
+    private void drawAviones(Lista oleada){
         // draw Dragones
         Avion temp = oleada.getHead();
         while (temp != null){
@@ -245,14 +267,14 @@ public class Ventana extends JPanel implements ActionListener {
                 System.out.println("1: " + i);
                 //oleada = creador.selectionSort(oleada);
                 oleada = creador.recreateOleada(oleada);
-                draw(oleada);
+                drawAviones(oleada);
                 lay = "Selection Sort";
                 break;
             case 2: // Cambia el ordenamiento por Insertion Sort
                 System.out.println("2: " + i);
                 //oleada = creador.insertionSort(oleada);
                 oleada = creador.recreateOleada(oleada);
-                draw(oleada);
+                drawAviones(oleada);
                 lay = "Insertion Sort";
                 break;
             //case 3: // Cambia el ordenamiento por Quick Sort
@@ -260,7 +282,7 @@ public class Ventana extends JPanel implements ActionListener {
                 System.out.println("3: " + i);
                 //oleada = creador.quickSort(oleada);
                 oleada = creador.recreateOleada(oleada);
-                draw(oleada);
+                drawAviones(oleada);
                 lay = "Quick Sort";
                 break;
             /*case 4: // Cambia el ordenamiento por Binary Tree
