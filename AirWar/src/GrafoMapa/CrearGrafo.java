@@ -50,10 +50,10 @@ public class CrearGrafo {
     }
     
     private int GenerarX(){
-        return (int) Math.floor(Math.random()*(800-1+1)+1);
+        return (int) Math.floor(Math.random()*(900-1+1)+1);
     }
     
     private int GenerarY(){
-        return (int) Math.floor(Math.random()*(800-1+1)+1);
+        return (int) Math.floor(Math.random()*(500-1+1)+1);
     }
 }

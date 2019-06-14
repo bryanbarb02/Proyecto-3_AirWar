@@ -101,9 +101,16 @@ public class Ventana extends JPanel implements ActionListener {
         // draw bateriaantiaerea
         g2d.drawImage(bateriaantiaerea.getImage(), bateriaantiaerea.getX(), bateriaantiaerea.getY(), this);
         
+        // Llamada para dibujar el grafo
+        drawGrafo(lGrafo);
+        
+        drawLineaGrafo(lGrafo);
         // Llamada para dibujar la oleada de Dragones
         drawAviones(oleada);
-        drawGrafo(lGrafo);
+        
+        // Llamada para dibujar linea del grafo
+//        g.setColor(Color.RED);
+//        g.drawLine(50, 50, 200, 100);
                     
         // draw Fuego
         ArrayList<Proyectil> proyactil = bateriaantiaerea.getfuego();
@@ -141,8 +148,19 @@ public class Ventana extends JPanel implements ActionListener {
         while (temp != null){
             g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
             temp = temp.getNext();
-        }
-        
+        } 
+    }
+    
+    private void drawLineaGrafo(ListaGrafo grafo){
+        // draw Dragones
+        NodoGrafo temp1 = grafo.getHead();
+        NodoGrafo temp2 = temp1.getNext();
+        while (temp2 != null){
+            g2d.setColor(Color.RED);
+            g2d.drawLine(temp1.getX(), temp1.getY(), temp2.getX(), temp2.getY());
+            temp1 = temp1.getNext();
+            temp2 = temp2.getNext();
+        } 
     }
     
     private void drawAviones(Lista oleada){
