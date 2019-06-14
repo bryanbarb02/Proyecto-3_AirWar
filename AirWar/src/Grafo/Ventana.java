@@ -18,10 +18,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
- *
- * @author hhlopez
- */
+
 public class Ventana extends javax.swing.JFrame {
 
     /**
@@ -84,7 +81,7 @@ public class Ventana extends javax.swing.JFrame {
                     int pos;                   
                     int Cantidad = 1;
                    // int nCar = 1;
-                    int Nmero = 400;
+                    int Nmero = 500;
                     int pCas = 0;
                    // int Y = 0;
                     LinkedList < Integer > PUNTY = new LinkedList < Integer > ();
@@ -125,7 +122,8 @@ public class Ventana extends javax.swing.JFrame {
                     g.setColor(Color.yellow);
                     g.drawString(Integer.toString(cantNodos), PUNTX.peek(), PUNTY.peek());
                     cantNodos++;
-                    }} }}
+                    }} }
+                }
                 bandera = false;
                 System.out.println("Bandera False");
                /*
@@ -133,8 +131,12 @@ public class Ventana extends javax.swing.JFrame {
                 ALEATORIO LAS CONEXIONES ENTRE NODOS
                 *
                 */
+               
+               System.out.println("El numero de elementos de la lista es " + (nodos.size()-1));
                 for( int M = 0; M<=CANTNODOS.peek(); M++ ){
-                int pos;                   
+                    System.out.println("El numero de elementos  " + CANTNODOS.peek());
+                for(int T = 0; T<=CANTNODOS.peek(); T++){    
+                    int pos;                   
                     int Nmero = CANTNODOS.peek();
                     int CantiNodos = 1;
                     LinkedList < Integer > INICIAL = new LinkedList < Integer > ();
@@ -164,11 +166,12 @@ public class Ventana extends javax.swing.JFrame {
                 *
                 */
                 
-                System.out.println("148");
+               // System.out.println("148");
+               
                     if(nodoinicial == null){
                         System.out.println("150");
-                        
-                        Nodo nodoinicial = nodos.get(INICIAL.peek());
+              
+                        Nodo nodoinicial = nodos.get(T);
                         
                         System.out.println(nodoinicial.posx);
                         System.out.println(nodoinicial.posy);
@@ -183,7 +186,7 @@ public class Ventana extends javax.swing.JFrame {
                          System.out.println("Nodo final");
                          System.out.println(nodofinal.posx);
                          System.out.println(nodofinal.posy);
-                            //nodofinal = BuscarNodo(e.getX(), e.getY());
+                            //nod2ofinal = BuscarNodo(e.getX(), e.getY());
                         if(nodofinal!=null){
                             seleccionarNodo(nodofinal, g, Color.red);
                             if(nodofinal.name != nodoinicial.name){
@@ -208,7 +211,7 @@ public class Ventana extends javax.swing.JFrame {
                         }
                         M++;
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////7
-            }}}}}}
+            }}}}}}}
             }
             @Override
             public void mousePressed(MouseEvent e) {
