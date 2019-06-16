@@ -1,5 +1,5 @@
 package Juego;
-
+// me cago en todo
 import Ordenamiento.*;
 import graf.GenerarGrafo;
 import java.awt.Color;
