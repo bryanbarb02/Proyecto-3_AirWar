@@ -24,7 +24,9 @@ public class GenerarGrafo {
     boolean sobreescribe = true;
         
         for(i = 0; i < vertices.length; i++) {
-            vertices[i] = new Vertice(Character.toString(etiquetas[i]), GenerarX(), GenerarY(), GenerarTipo());  
+            int x = GenerarX();
+            int y = GenerarY();
+            vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  
             
         }
         
@@ -101,25 +103,55 @@ public class GenerarGrafo {
     }
 
     private int GenerarX(){
-//        int gx = (int) Math.floor(Math.random()*(900-1+1)+1);
         return 50 * (int) Math.floor(Math.random()*20);
     }
     
     private int GenerarY(){
-//        int gy = (int) Math.floor(Math.random()*(500-1+1)+1);
         return 50 * (int) Math.floor(Math.random()*10);
     }
     
-    private String GenerarTipo(){
-            //Lista con las clases predefinidas para los Dragones
-            String[] clases = {"aeropuerto", "aeropuerto"}; // "portaaviones"
-
-            //Indice creado aleatoriamente
-            int indice = (int) Math.floor(Math.random()*(1-0+1)+0);
-
-            //Devuelve la clase accesada
-            return clases[indice];
-//        }
+//    private String GenerarTipo(){
+//            //Lista con las clases predefinidas para los Dragones
+//            String[] clases = {"aeropuerto", "aeropuerto"}; // "portaaviones"
+//
+//            //Indice creado aleatoriamente
+//            int indice = (int) Math.floor(Math.random()*(1-0+1)+0);
+//
+//            //Devuelve la clase accesada
+//            return clases[indice];
+////        }
+//    }
+    int pos[][] = {{0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},//0
+                   {1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,1,1,1,1,1,1},//50
+                   {0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,1},//100
+                   {0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0},//150
+                   {0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0},//200
+                   {0,0,0,0,0,1,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0},//250
+                   {0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,1,0,0,0},//300
+                   {0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0},//350
+                   {0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,0},//400
+                   {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//450
+                   {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//500
+                  };
+    
+    private String GenerarTipo(int i, int j){
+        int indice = 0;
+        
+        for (int x = 0; x < 21;x++) {
+            System.out.println("+++++++++++++++++++++++");
+            if(x == i ){
+                for (int y = 0; y < 11; y++) {
+                    if ( y == j){
+                        indice = pos[j][i];
+                        x = 21;
+                        y = 11;
+                    }   
+                }
+            }
+	}
+        String[] clases = {"portaaviones", "aeropuerto"};
+//        return indice;
+        return clases[indice];
     }
     
     

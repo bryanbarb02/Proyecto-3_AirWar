@@ -6,13 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /*
-  
  * Vertice == Nodo
-=======
-import java.util.ArrayList;
-
-/*
->>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
  * Cada instancia a esta clase representa cada vertice
  * Cada vertice tiene asociado una etiqueta
  * Por tanto, la existencia de esta no permite vértices duplicados
