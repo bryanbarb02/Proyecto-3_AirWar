@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 package graf;
-=======
->>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
+
 import java.util.ArrayList;
 
 /**
@@ -11,8 +10,7 @@ import java.util.ArrayList;
  * aristas de tal forma que {A, B, C} y {D, E, F} forman dos triángulos isósceles,
  * a continuación, el vértice A se une con el vértice D; y el C con el E; de esta forma
  * quedan comunicados ambos triángulos.   
- */
-<<<<<<< HEAD
+
 //public class MiGrafo{
 //    public static void main (String [] args){
 //	Grafo miGrafo = new Grafo();
@@ -179,4 +177,4 @@ public class MiGrafo{
 	    }	
     }
 }
->>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
+
