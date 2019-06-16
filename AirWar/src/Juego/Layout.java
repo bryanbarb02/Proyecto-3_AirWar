@@ -26,7 +26,7 @@ public class Layout {
     public Layout(){
         x = 1045;
         y = 0;
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/Layout.jpg"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/Layout2.jpg"));
         image = ii.getImage();  
     }
     

@@ -51,18 +51,18 @@ public class Lista {
         }
         return temp;
     }
-    public void setPosition(int pos, Avion dragon){//Asigna la posicion del dragon
-        if(pos < 0 && pos >= size){
-            System.out.println("No valido");
-        }
-        Avion temp = head;
-        int i = 0;
-        while(i < pos-1){
-            this.head = head.getNext();
-        }
-        dragon.setNext(temp.getNext().getNext());
-        temp.setNext(dragon);
-    }
+//    public void setPosition(int pos, Avion dragon){//Asigna la posicion del dragon
+//        if(pos < 0 && pos >= size){
+//            System.out.println("No valido");
+//        }
+//        Avion temp = head;
+//        int i = 0;
+//        while(i < pos-1){
+//            this.head = head.getNext();
+//        }
+//        dragon.setNext(temp.getNext().getNext());
+//        temp.setNext(dragon);
+//    }
 
 
     /**
@@ -138,8 +138,6 @@ public class Lista {
             System.out.println("Edad: " + temp.getAge());
             System.out.println("Resistencia: " + temp.getResistance());
             System.out.println("Clase: " + temp.getClassType());
-            if (temp.getPadre() != null)
-                System.out.println("Padre: " + temp.getPadre().getName());
             System.out.println("Coordinadas: (" + temp.getX() + "," + temp.getY() + ")");
             System.out.println("");
 

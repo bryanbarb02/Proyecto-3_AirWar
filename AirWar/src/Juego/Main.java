@@ -20,6 +20,7 @@ public class Main extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        
     }
 
     public static void main(String[] args) {

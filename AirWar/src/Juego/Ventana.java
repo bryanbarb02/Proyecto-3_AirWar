@@ -1,8 +1,7 @@
 package Juego;
 
-import GrafoMapa.*;
-import GrafoMapa.ListaGrafo;
 import Ordenamiento.*;
+import graf.GenerarGrafo;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
@@ -15,37 +14,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 /**
  *
- * @author Bryanbar
+ * @author Bryan
  */
 public class Ventana extends JPanel implements ActionListener {
     public static int nivel = 1; //Max 7                            //Pasarian 126 cambios de alineacion
-    public static int cantDragones = 6; //Max 30
+    public static int cantAviones = 10; //Max 30
     
-    public static CreadorDeOleadas creador = new CreadorDeOleadas();
-    public static Lista oleada = new Lista();
-    
-    public static CrearGrafo crearGrafo = new CrearGrafo();
-    public static ListaGrafo lGrafo = new ListaGrafo();
-    
+    public GenerarGrafo generarGrafo = new GenerarGrafo();
+
     private Image image;
-    private Timer timer;
+    
     private BateriaAntiAerea bateriaantiaerea;
-    public static Avion lastDead;
+    
+    
     private Layout layout;
-    private AVLTree avlTree = new AVLTree();
-    private BinaryTree binary = new BinaryTree();
     private static int numOrden = 1;
     static Graphics2D g2d;
     
     private Font font;
     private String vida, layoutActual, lay, nombre, edad, resistencia, clase, velocidad, destruidos;
     static int Vidas, Destruidos;
-    
+    public static Avion lastDead;
+    public static CreadorDeOleadas creador = new CreadorDeOleadas();
+    public static Lista oleada = new Lista();
+    private Timer timer;
     
     /**
      * Constructor del juego
@@ -59,14 +54,13 @@ public class Ventana extends JPanel implements ActionListener {
         
         layout = new Layout();
         
-        bateriaantiaerea = new BateriaAntiAerea(); 
-        
+        bateriaantiaerea = new BateriaAntiAerea();
+
+        generarGrafo.HacerGrafo();
+        creador.setVerticesCoord(generarGrafo.vertices);
+
         oleada = creador.newOleada();
 
-        lGrafo = crearGrafo.newGrafo();
-        
-        
-        
         lay = "aleatorio";
         Vidas = 3;
         Destruidos = 0;
@@ -75,42 +69,36 @@ public class Ventana extends JPanel implements ActionListener {
         destruidos = "Destruidos: " + Destruidos;
         
         timer = new Timer(15, this);
+        
         timer.start();
          
     }
-    
 
     public static int getCantDragones() {
-        return cantDragones;
+        return cantAviones;
     }
 
     public static void setCantDragones(int cantDragones) {
-        Ventana.cantDragones = cantDragones;
+        Ventana.cantAviones = cantDragones;
     }
-    
-    
 
     @Override
     public void paint(Graphics g){
         super.paint(g);
         g2d = (Graphics2D)g;
-        
-        
+
         // draw Castillo fondo
         g.drawImage(image, 0, 0, getWidth(), getHeight(),this);
         // draw bateriaantiaerea
         g2d.drawImage(bateriaantiaerea.getImage(), bateriaantiaerea.getX(), bateriaantiaerea.getY(), this);
         
         // Llamada para dibujar el grafo
-        drawGrafo(lGrafo);
+        drawLineaGrafo(generarGrafo);
+        drawGrafo(generarGrafo);
         
-        drawLineaGrafo(lGrafo);
+
         // Llamada para dibujar la oleada de Dragones
         drawAviones(oleada);
-        
-        // Llamada para dibujar linea del grafo
-//        g.setColor(Color.RED);
-//        g.drawLine(50, 50, 200, 100);
                     
         // draw Fuego
         ArrayList<Proyectil> proyactil = bateriaantiaerea.getfuego();
@@ -142,25 +130,31 @@ public class Ventana extends JPanel implements ActionListener {
         g.dispose();
     }
     
-    private void drawGrafo(ListaGrafo grafo){
-        // draw Dragones
-        NodoGrafo temp = grafo.getHead();
-        while (temp != null){
-            g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
-            temp = temp.getNext();
-        } 
-    }
     
-    private void drawLineaGrafo(ListaGrafo grafo){
-        // draw Dragones
-        NodoGrafo temp1 = grafo.getHead();
-        NodoGrafo temp2 = temp1.getNext();
-        while (temp2 != null){
-            g2d.setColor(Color.RED);
-            g2d.drawLine(temp1.getX(), temp1.getY(), temp2.getX(), temp2.getY());
-            temp1 = temp1.getNext();
-            temp2 = temp2.getNext();
-        } 
+    /**
+     * DIBUJA LOS VERTICES
+     * @param generarGrafo 
+     */
+    private void drawGrafo(GenerarGrafo generarGrafo){
+        for (int i=0; i < generarGrafo.vertices.length;i++)
+            g2d.drawImage(generarGrafo.vertices[i].getImage(), generarGrafo.vertices[i].getX(),generarGrafo.vertices[i].getY(),this);   
+            
+    }
+        
+    /**
+     * DIBUJA LAS ARISTAS
+     * @param grafo 
+     */
+    private void drawLineaGrafo(GenerarGrafo generarGrafo){
+        for(int i = 0; i < 10; i++){
+            for(int k = 0; k < generarGrafo.vertices[i].getContarVecinos(); k++ ){ // verifica la cantidad de conexiones de cada vertice
+                g2d.setColor(Color.RED);
+                g2d.drawLine(generarGrafo.vertices[i].getVecino(k).getVertice1().getX(), 
+                             generarGrafo.vertices[i].getVecino(k).getVertice1().getY(), 
+                             generarGrafo.vertices[i].getVecino(k).getVertice2().getX(), 
+                             generarGrafo.vertices[i].getVecino(k).getVertice2().getY());
+            }
+        }
     }
     
     private void drawAviones(Lista oleada){
@@ -173,13 +167,13 @@ public class Ventana extends JPanel implements ActionListener {
         
     }
     
-    private void drawTree (Avion tree){
-        g2d.drawImage(tree.getImage(), tree.getX(),tree.getY(),this);
-        if (tree.getLeft() != null)
-            drawTree(tree.getLeft());
-        if (tree.getRight() != null)
-        drawTree(tree.getRight());
-    }
+//    private void drawTree (Avion tree){
+//        g2d.drawImage(tree.getImage(), tree.getX(),tree.getY(),this);
+//        if (tree.getLeft() != null)
+//            drawTree(tree.getLeft());
+//        if (tree.getRight() != null)
+//        drawTree(tree.getRight());
+//    }
     
     
     
@@ -192,11 +186,12 @@ public class Ventana extends JPanel implements ActionListener {
         // Updates, acciones del bateriaantiaerea
         bateriaantiaerea.logic();     
         // Acciones del Dragon
+        
         Avion temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
         while (temp != null){ // La lista tiene elementos, no está vacía
             temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
             
-            if(temp.getX() == -80) // Si el dragon sobrepasa al caballeroMedieval
+            if(temp.getX() == -200) // Si el dragon sobrepasa al caballeroMedieval
                     if (temp.isVisible() == true) // Verifíca que el elemento existe en pantalla 
                         Vidas -= 1; // Resta una vida al caballeroMedieval
                         if (Vidas == 0) // Si el bateriaantiaerea no tiene vidas 
@@ -217,8 +212,7 @@ public class Ventana extends JPanel implements ActionListener {
 //                            String ubicacionXML = creador.oleadaToXML(temp); // Escribe la información en un XML 
                         }
                         if (oleada.getHead() == null) { // Si la lista esta vacía 
-                            System.out.println("Empty");
-                            levelUp(); // Aumenta el nivel e incrementa la cantidad de Dragones por oleada 
+//                            levelUp(); // Aumenta el nivel e incrementa la cantidad de Dragones por oleada 
                             oleada = creador.newOleada(); // Crea una nueva oleada
                             //draw(oleada);
                             break;
@@ -226,11 +220,9 @@ public class Ventana extends JPanel implements ActionListener {
                             int i = temp.getResistance(); // Obtiene el valor de la resistencia al que golpea 
                             temp.setResistance(i - 1); // Resta una vida a la resistencia del Dragon 
                             l.setVisible(false); //El disparo de Fuego desaparece
-                            if (temp.getResistance()== 0) // Si el dragon se queda sin resistencia
-                                reorganice(oleada); // Cambia el ordenamiento de la oleada
+                            
                                 
-                        }
-                        //Enviar servidor ubicacionXML 
+                        } 
                 }
                  
             }
@@ -267,76 +259,16 @@ public class Ventana extends JPanel implements ActionListener {
             bateriaantiaerea.keyPressed(e);
                     timer.start();
         }
-//        @Override
-//        public void keyReleased(KeyEvent e){
-//            caballeroMedieval.keyReleased(e);       
-//        }
+
     }
-    /**
-     * Método de reorganizacion de los Dragones 
-     * @param oleada 
-     */
-    private void reorganice(Lista oleada){
-        System.out.println(oleada.getHead());
-        int i = (numOrden + 3) % 3;
-        
-        switch (i) {
-            case 1: // Cambia el ordenamiento por Selection Sort
-                System.out.println("1: " + i);
-                //oleada = creador.selectionSort(oleada);
-                oleada = creador.recreateOleada(oleada);
-                drawAviones(oleada);
-                lay = "Selection Sort";
-                break;
-            case 2: // Cambia el ordenamiento por Insertion Sort
-                System.out.println("2: " + i);
-                //oleada = creador.insertionSort(oleada);
-                oleada = creador.recreateOleada(oleada);
-                drawAviones(oleada);
-                lay = "Insertion Sort";
-                break;
-            //case 3: // Cambia el ordenamiento por Quick Sort
-            default:
-                System.out.println("3: " + i);
-                //oleada = creador.quickSort(oleada);
-                oleada = creador.recreateOleada(oleada);
-                drawAviones(oleada);
-                lay = "Quick Sort";
-                break;
-            /*case 4: // Cambia el ordenamiento por Binary Tree
-                System.out.println("4: " + i);
-                binary = creador.turnToBinaryTree(oleada);
-                drawTree(binary.getRoot());
-                lay = "Binary Tree";
-                break;*/
-           /* default: // Cambia el ordenamiento por AVLTree
-                System.out.println("5: " + i);
-                avlTree = creador.turnToAVLTree(oleada);
-                drawTree(avlTree.getRoot());
-                lay = "AVL Tree";
-                break;*/
-        }
-        numOrden+=1;
-        System.out.println("NumOrden: " + numOrden);
-                    
-    }
+    
     /**
      * Aumenta el nivel y la cantidad de Dragones 
      */
     public void levelUp(){
         this.nivel = this.nivel + 1;
-        cantDragones = (int)(this.cantDragones + (this.cantDragones*0.2));
+        cantAviones = (int)(this.cantAviones + (this.cantAviones*0.2));
     }
-    
-    
-    /**
-     * 
-     * 
-     * 
-     * 
-     */
-    
-    
     
     /**
      * Estado de juego mientras esta activo
@@ -344,5 +276,6 @@ public class Ventana extends JPanel implements ActionListener {
      */
     public void gameOver(int status){
         timer.stop();
+        
     }
 }

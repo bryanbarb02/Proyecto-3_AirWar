@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+package graf;
+=======
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 import java.util.*;
 
 /* 
@@ -17,8 +21,12 @@ public class Grafo{
     /**
      * Construcción de un grafo vacío
      **/
+<<<<<<< HEAD
+    public Grafo() {
+=======
     public Grafo()
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	this.vertices = new HashMap<String, Vertice>();
 	this.aristas = new HashMap<Integer, Arista>();
     }
@@ -30,6 +38,13 @@ public class Grafo{
      *
      *@param vertices. Array de lista usado para llenar el grafo
      **/
+<<<<<<< HEAD
+    public Grafo(ArrayList<Vertice> vertices) {
+	this.vertices = new HashMap<String, Vertice>();
+	this.aristas = new HashMap<Integer, Arista>();
+
+	for(Vertice v : vertices ) {
+=======
     public Grafo(ArrayList<Vertice> vertices)
     {
 	this.vertices = new HashMap<String, Vertice>();
@@ -37,6 +52,7 @@ public class Grafo{
 
 	for(Vertice v : vertices )
 	    {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 		this.vertices.put(v.getEtiqueta(), v);
 	    }
 	
@@ -51,8 +67,12 @@ public class Grafo{
      * @param v2. Otro extremo de la arista
      * @return true. Si y solo si la arista no existe previamente
      **/
+<<<<<<< HEAD
+    public boolean insertarArista(Vertice v1, Vertice v2) {
+=======
     public boolean insertarArista(Vertice v1, Vertice v2)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
       	return insertarArista(v1, v2, 1);
     }
 
@@ -69,8 +89,12 @@ public class Grafo{
      * @param peso. Coste para llegar de v1 a v2 o viceversa
      * @return true. Si y solo si la arista no existe previamente
      **/
+<<<<<<< HEAD
+    public boolean insertarArista(Vertice v1, Vertice v2, int peso) {
+=======
     public boolean insertarArista(Vertice v1, Vertice v2, int peso)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	if(v1.equals(v2)) //vertices identicos?
 	    return false;
 
@@ -91,8 +115,12 @@ public class Grafo{
      * @param arista. Arista que estamos buscando
      * @return true. Si y solo si el grafo contiene a la arista
      **/
+<<<<<<< HEAD
+    public boolean contieneLaArista(Arista arista) {
+=======
     public boolean contieneLaArista(Arista arista)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	if(arista.getVertice1() == null || arista.getVertice2() == null)
 	    return false;
 	return this.aristas.containsKey(arista.hashCode());
@@ -106,8 +134,12 @@ public class Grafo{
      *@param arista. Arista que se quiere eliminar del grafo
      *@return Arista. Arista borrada del grafo
      */
+<<<<<<< HEAD
+    public Arista eliminarArista(Arista arista) {
+=======
     public Arista eliminarArista(Arista arista)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	arista.getVertice1().eliminarVecino(arista);
 	arista.getVertice2().eliminarVecino(arista);
 	return this.aristas.remove(arista.hashCode());
@@ -120,8 +152,12 @@ public class Grafo{
      * @param vertice. Vértice que buscamos
      * @return boolean. True si el vertice se encuentra.
      **/    
+<<<<<<< HEAD
+    public boolean contieneElVertice(Vertice vertice) {
+=======
     public boolean contieneElVertice(Vertice vertice)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	return (this.vertices.get(vertice.getEtiqueta()) != null);
     }
 
@@ -129,8 +165,12 @@ public class Grafo{
      * @param etiqueta. Distintivo de cada vértice
      * @return Vertice. Devuelve el vértice asociado a la etiqueta
      **/
+<<<<<<< HEAD
+    public Vertice getVertice(String etiqueta) {
+=======
     public Vertice getVertice(String etiqueta)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	return this.vertices.get(etiqueta);
     }
 
@@ -143,8 +183,12 @@ public class Grafo{
      * @param sobreescribeVertice. Permiso para sobreescribir el vértice
      * @return boolean. Verdarero si el vértice se inserta con éxito
      **/
+<<<<<<< HEAD
+    public boolean insertarVertice(Vertice vertice, boolean sobreescribeVertice) {
+=======
     public boolean insertarVertice(Vertice vertice, boolean sobreescribeVertice)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	Vertice actual = this.vertices.get(vertice.getEtiqueta());
 	if(actual != null) //existía previamente?
 	    {
@@ -168,8 +212,12 @@ public class Grafo{
      * @param etiqueta. Cadena distintiva de cada vértice
      * @return Vertice. Devuelve el vértice eliminado
      **/
+<<<<<<< HEAD
+    public Vertice eliminarVertice(String etiqueta) {
+=======
     public Vertice eliminarVertice(String etiqueta)
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	Vertice vertice = vertices.remove(etiqueta);
 
 	while(vertice.getContarVecinos() >= 0)
@@ -182,16 +230,24 @@ public class Grafo{
      * @return Set<String>. Devuelve las etiquetas, que son el distintivo
      * único de cada objeto Vertice en el Grafo
      **/
+<<<<<<< HEAD
+    public Set<String> verticeKeys() {
+=======
     public Set<String> verticeKeys()
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	return this.vertices.keySet();
     }
 
     /**
      * @return Set<Arista>. Devuelve todos los objetos Arista del Grafo
      **/
+<<<<<<< HEAD
+    public Set<Arista> getAristas() {
+=======
     public Set<Arista> getAristas()
     {
+>>>>>>> 8136e12cd0ad636f7b94e966b2bfdec750eb3d36
 	return new HashSet<Arista>(this.aristas.values());
     }
     

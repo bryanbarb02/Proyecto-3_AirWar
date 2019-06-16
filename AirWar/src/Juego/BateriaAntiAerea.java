@@ -29,7 +29,7 @@ public class BateriaAntiAerea {
         rango = 950; // distancia de movimiento
         direccion = 1; // -1 izquierda, 1 derecha 
         moverX = 0; 
-        velocidad = 5;
+        velocidad = 7;
     }
     
     //Métodos getters
