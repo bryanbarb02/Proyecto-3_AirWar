@@ -198,8 +198,8 @@ public class Avion {
 //        x += -Velocidad;
 //        dx = Velocidad;
 //        // IZQ
-        if((x>0 && dx<0) || (x<795 && dx>10)) // Límites de la pantalla en y
-            x += Velocidad * 0.1;
+        if((x>0 && dx<0) || (x<795 && dx>-10)) // Límites de la pantalla en y
+            x += Velocidad * -0.1;
 //            dx = Velocidad * -0.1;
 //        // ARRIBA
 //        if((y>0 && dy<0) || (y<370 && dy>0)) // Límites de la pantalla en x
