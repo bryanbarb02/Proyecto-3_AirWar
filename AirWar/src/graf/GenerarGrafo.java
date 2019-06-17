@@ -166,6 +166,7 @@ public class GenerarGrafo {
         return clases[indice];
     }
     public void ruta(char L){
+        System.out.println("Posibles rutas: ");
         DijkstraVertex[] vert = {
                                     new DijkstraVertex("A"),
                                     new DijkstraVertex("B"),
@@ -264,7 +265,7 @@ public class GenerarGrafo {
                     dijkstra.printShortestPath(D, F);
                 }
                 else{
-                    
+                    System.out.println("La ruta no es posible ");
                 }
                             
             }
@@ -275,14 +276,13 @@ public class GenerarGrafo {
                     dijkstra.printShortestPath(E, F);
                 }
                 else{
-                    
+                    System.out.println("La ruta no es posible ");
                 }
                            
             }
             
             if(L == 'F'){
-                
-                            
+                System.out.println("La ruta no es posible ");      
             }
             
             if(L == 'G'){
@@ -318,7 +318,7 @@ public class GenerarGrafo {
             }
             
             if(L == 'I'){
-                      
+                System.out.println("La ruta no es posible ");
             }
             
             if(L == 'J'){
@@ -327,9 +327,11 @@ public class GenerarGrafo {
                     dijkstra.printShortestPath(J, F);
                 }      
                 else{
-                    
+                    System.out.println("La ruta no es posible ");
                 }
             }
+            
+            System.out.println("");
     }
 }
 
