@@ -31,7 +31,8 @@ public class GenerarGrafo {
         for(i = 0; i < vertices.length; i++) {
             int x = GenerarX();
             int y = GenerarY();
-            vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  	
+            vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  
+				
         }
       
         
@@ -208,10 +209,127 @@ public class GenerarGrafo {
             
             
             DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(vert, eges);
-            int c = (int) Math.floor(Math.random()*(9-0+1)+0);
-//            char fi = DijkstraVertex[c];
-//            dijkstra.getShortestPath(L, fi);
-//            dijkstra.printShortestPath(L, fi);
+            int c = (int) Math.floor(Math.random()*(3-0+1)+0);
+
+            if(L == 'A'){
+                if(c == 0){
+                    dijkstra.getShortestPath(A, E);
+                    dijkstra.printShortestPath(A, E);
+                }
+                if(c == 1){
+                    dijkstra.getShortestPath(A, H);
+                    dijkstra.printShortestPath(A, H);
+                }
+                else{
+                    dijkstra.getShortestPath(A, J);
+                    dijkstra.printShortestPath(A, J);
+                }
+            }
+            
+            if(L == 'B'){
+                if(c == 0){
+                    dijkstra.getShortestPath(B, F);
+                    dijkstra.printShortestPath(B, F);
+                }
+                if(c == 1){
+                    dijkstra.getShortestPath(B, H);
+                    dijkstra.printShortestPath(B, H);
+                }
+                else{
+                    dijkstra.getShortestPath(B, E);
+                    dijkstra.printShortestPath(B, E);
+                }
+                            
+            }
+            
+            if(L == 'C'){
+                if(c == 0){
+                    dijkstra.getShortestPath(C, F);
+                    dijkstra.printShortestPath(C, F);
+                }
+                if(c == 1){
+                    dijkstra.getShortestPath(C, I);
+                    dijkstra.printShortestPath(C, I);
+                }
+                else{
+                    dijkstra.getShortestPath(C, H);
+                    dijkstra.printShortestPath(C, H);
+                }
+                            
+            }
+            
+            if(L == 'D'){
+                if(c == 0){
+                    dijkstra.getShortestPath(D, F);
+                    dijkstra.printShortestPath(D, F);
+                }
+                else{
+                    
+                }
+                            
+            }
+            
+            if(L == 'E'){
+                if(c == 0){
+                    dijkstra.getShortestPath(E, F);
+                    dijkstra.printShortestPath(E, F);
+                }
+                else{
+                    
+                }
+                           
+            }
+            
+            if(L == 'F'){
+                
+                            
+            }
+            
+            if(L == 'G'){
+                if(c == 0){
+                    dijkstra.getShortestPath(G, F);
+                    dijkstra.printShortestPath(G, F);
+                }
+                if(c == 1){
+                    dijkstra.getShortestPath(G, J);
+                    dijkstra.printShortestPath(G, J);
+                }
+                else{
+                    dijkstra.getShortestPath(G, I);
+                    dijkstra.printShortestPath(G, I);
+                }
+                            
+            }
+            
+            if(L == 'H'){
+                if(c == 0){
+                    dijkstra.getShortestPath(H, I);
+                    dijkstra.printShortestPath(H, I);
+                }
+                if(c == 1){
+                    dijkstra.getShortestPath(H, J);
+                    dijkstra.printShortestPath(H, J);
+                }
+                else{
+                    dijkstra.getShortestPath(H, F);
+                    dijkstra.printShortestPath(H, F);
+                }
+                            
+            }
+            
+            if(L == 'I'){
+                      
+            }
+            
+            if(L == 'J'){
+                if(c == 0){
+                    dijkstra.getShortestPath(J, F);
+                    dijkstra.printShortestPath(J, F);
+                }      
+                else{
+                    
+                }
+            }
     }
 }
 

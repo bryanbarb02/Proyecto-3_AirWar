@@ -1,7 +1,7 @@
 package DijkstraGrafo;
 
 public class DijkstraVertex {
-	private String vertex;
+	public String vertex;
 	private DijkstraVertex from;
 	private int total;
 	private boolean defineVertex = false;

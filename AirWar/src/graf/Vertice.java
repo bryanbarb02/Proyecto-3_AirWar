@@ -67,7 +67,6 @@ public class Vertice {
      */
 
     public Arista getVecino(int indice) {
-
 	return this.vecindad.get(indice);
     }
 

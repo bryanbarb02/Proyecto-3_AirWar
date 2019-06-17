@@ -23,9 +23,10 @@ import javax.swing.ImageIcon;
  */
 public class Ventana extends JPanel implements ActionListener {
     public static int nivel = 1; //Max 7                            //Pasarian 126 cambios de alineacion
-    public static int cantAviones = 10; //Max 30
+    public static int cantAviones = 3; //Max 30
      DijkstraAlgorithm dijkstra;
     public GenerarGrafo generarGrafo = new GenerarGrafo();
+    DijkstraVertex A,B,C,D,E,F,G,H,I,J;
 
     private Image image;
     
@@ -73,6 +74,12 @@ public class Ventana extends JPanel implements ActionListener {
         timer = new Timer(15, this);
         
         timer.start();
+        
+        for(int i = 0; i < 10; i++){
+            for(int k = 0; k < generarGrafo.vertices[i].getContarVecinos(); k++ ){
+                generarGrafo.ruta(generarGrafo.vertices[i].getVecino(k).getVertice1().toString().charAt(9));
+            }
+        }
          
     }
 
@@ -191,15 +198,8 @@ public class Ventana extends JPanel implements ActionListener {
         // Acciones del Dragon
         
         Avion temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
-        temp.getY();
-        for(int i = 0; i < 10; i++){
-            for(int k = 0; k < generarGrafo.vertices[i].getContarVecinos(); k++ ){
-                int tempG = generarGrafo.vertices[i].getVecino(k).getVertice1().getY();
-                int tempA = temp.getY();
-                if(tempG == tempA)
-                    generarGrafo.ruta(generarGrafo.vertices[i].getVecino(k).getVertice1().toString().charAt(9));
-                
-            }}
+        
+        
         
         while (temp != null){ // La lista tiene elementos, no está vacía
             temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
