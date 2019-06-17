@@ -14,7 +14,7 @@ public class Main extends JFrame {
      */
     public Main(){
         add(new Ventana());
-        setTitle("Game of Sorts");
+        setTitle("AIR-WAR");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1350,645);
         setLocationRelativeTo(null);

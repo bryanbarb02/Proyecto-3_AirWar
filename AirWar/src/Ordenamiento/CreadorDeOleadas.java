@@ -24,7 +24,7 @@ public class CreadorDeOleadas {
      * @return - lista desordenada de dragones (Oleada)
      */
     public Lista newOleada(){
-        int cantidad = Ventana.getCantDragones(); //Recibe la cantidad de dragones que habrán en la oleada
+        int cantidad = Ventana.getCantaviones(); //Recibe la cantidad de dragones que habrán en la oleada
         for (int i = 1; i <= cantidad; i++){ //Son aregados la cantidad de Dragones anteriormente dada a una lista enlazada.
             Avion avion = newDragon();  //Crea un nuevo dragon con atributos aleatorios
             avion.generateCoords(v); //Se le agregan las coordenadas para ser mostrado en pantalla 

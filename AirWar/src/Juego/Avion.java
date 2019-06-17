@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
- * Representa un dragon.
+ * Representa un avión.
  * @author Bryan
  */
 public class Avion {
@@ -40,7 +40,7 @@ public class Avion {
    
     
     /**
-     * Constructor del Dragon 
+     * Constructor del avión 
      * @param x - posición en x
      */
     public Avion(String name, int rS, int age, int resistance, String classType){
@@ -192,7 +192,7 @@ public class Avion {
     }  
     
     /**
-     * Acciones de movimiento de los dragones  
+     * Acciones de movimiento de los aviones  
      */
     public void logic(){
         if((x>0 && dx<0) || (x<795 && dx>-10)) // Límites de la pantalla en y

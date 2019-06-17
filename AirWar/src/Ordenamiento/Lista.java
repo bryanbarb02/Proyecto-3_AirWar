@@ -5,9 +5,7 @@ import Juego.*;
 /**
  * Representacion de una Lista
  *
- * @author Rubén Salas
- * @version 1.1
- * @since 17/10/18
+ * @author bryan
  *
  */
 public class Lista {

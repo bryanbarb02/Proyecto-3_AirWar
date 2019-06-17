@@ -1,5 +1,4 @@
 package Juego;
-// me cago en todo
 import DijkstraGrafo.DijkstraAlgorithm;
 import DijkstraGrafo.DijkstraVertex;
 import Ordenamiento.*;
@@ -83,12 +82,12 @@ public class Ventana extends JPanel implements ActionListener {
          
     }
 
-    public static int getCantDragones() {
+    public static int getCantaviones() {
         return cantAviones;
     }
 
-    public static void setCantDragones(int cantDragones) {
-        Ventana.cantAviones = cantDragones;
+    public static void setCantaviones(int cantAviones) {
+        Ventana.cantAviones = cantAviones;
     }
 
     @Override
@@ -96,7 +95,7 @@ public class Ventana extends JPanel implements ActionListener {
         super.paint(g);
         g2d = (Graphics2D)g;
 
-        // draw Castillo fondo
+        // draw mapa mundial fondo
         g.drawImage(image, 0, 0, getWidth(), getHeight(),this);
         // draw bateriaantiaerea
         g2d.drawImage(bateriaantiaerea.getImage(), bateriaantiaerea.getX(), bateriaantiaerea.getY(), this);
@@ -106,7 +105,7 @@ public class Ventana extends JPanel implements ActionListener {
         drawGrafo(generarGrafo);
         
 
-        // Llamada para dibujar la oleada de Dragones
+        // Llamada para dibujar la oleada de aviones
         drawAviones(oleada);
                     
         // draw Fuego
@@ -167,7 +166,7 @@ public class Ventana extends JPanel implements ActionListener {
     }
     
     private void drawAviones(Lista oleada){
-        // draw Dragones
+        // draw aviones
         Avion temp = oleada.getHead();
         while (temp != null){
             g2d.drawImage(temp.getImage(), temp.getX(),temp.getY(),this);
@@ -195,18 +194,18 @@ public class Ventana extends JPanel implements ActionListener {
         // Updates, acciones del bateriaantiaerea
         bateriaantiaerea.logic(); 
         
-        // Acciones del Dragon
+        // Acciones del aviones
         
         Avion temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
         
         
         
         while (temp != null){ // La lista tiene elementos, no está vacía
-            temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
+            temp.logic(); // Llama al metodo que realiza el movimineto de los aviones 
             
-            if(temp.getX() == -200) // Si el dragon sobrepasa al caballeroMedieval
+            if(temp.getX() == -200) 
                     if (temp.isVisible() == true) // Verifíca que el elemento existe en pantalla 
-                        Vidas -= 1; // Resta una vida al caballeroMedieval
+                        Vidas -= 1; // Resta una vida al bateria antiaerea
                         if (Vidas == 0) // Si el bateriaantiaerea no tiene vidas 
                             gameOver(0); // LLamada al metodo que termina el juego
             
@@ -216,10 +215,10 @@ public class Ventana extends JPanel implements ActionListener {
                 Proyectil l = fuego.get(li);
                 if(l.getLimites().intersects(temp.getBounds()) && l.isVisible() && temp.isVisible()){
                     oleada.print();
-                        if (temp.getResistance() == 1){ // Si el Dragon se queda sin resistencia 
-                            temp.setVisible(false); // El Dragon no es visible 
-                            this.lastDead = temp; // Último Dragon eliminado
-                            oleada.destroyEnemy(temp.getName()); // Elimina al Dragon de la lista
+                        if (temp.getResistance() == 1){ // Si el avión se queda sin resistencia 
+                            temp.setVisible(false); // El avión no es visible 
+                            this.lastDead = temp; // Último avión eliminado
+                            oleada.destroyEnemy(temp.getName()); // Elimina al avión de la lista
                             Destruidos += 1;
                             l.setVisible(false); // El disparo de Fuego desaparece 
 //                            String ubicacionXML = creador.oleadaToXML(temp); // Escribe la información en un XML 
@@ -231,7 +230,7 @@ public class Ventana extends JPanel implements ActionListener {
                             break;
                         } else {
                             int i = temp.getResistance(); // Obtiene el valor de la resistencia al que golpea 
-                            temp.setResistance(i - 1); // Resta una vida a la resistencia del Dragon 
+                            temp.setResistance(i - 1); // Resta una vida a la resistencia del avión 
                             l.setVisible(false); //El disparo de Fuego desaparece
                             
                                 
@@ -254,7 +253,7 @@ public class Ventana extends JPanel implements ActionListener {
         // Caracteristícas dragon
         vida = "Vidas: " + Vidas; // Actualiza las vidas en pantalla
         destruidos = "Destruidos: " + Destruidos;
-        layoutActual = lay; // Actualizacion de posición de dragones
+        layoutActual = lay; // Actualizacion de posición de aviones
         
         
         nombre = "Nombre: " + oleada.getHead().getName();
@@ -276,7 +275,7 @@ public class Ventana extends JPanel implements ActionListener {
     }
     
     /**
-     * Aumenta el nivel y la cantidad de Dragones 
+     * Aumenta el nivel y la cantidad de aviones 
      */
     public void levelUp(){
         this.nivel = this.nivel + 1;
