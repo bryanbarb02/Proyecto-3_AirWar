@@ -31,8 +31,7 @@ public class GenerarGrafo {
         for(i = 0; i < vertices.length; i++) {
             int x = GenerarX();
             int y = GenerarY();
-            vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  
-				
+            vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  	
         }
       
         
@@ -165,7 +164,7 @@ public class GenerarGrafo {
 //        return indice;
         return clases[indice];
     }
-    public void ruta(DijkstraVertex in, DijkstraVertex fi){
+    public void ruta(char L){
         DijkstraVertex[] vert = {
                                     new DijkstraVertex("A"),
                                     new DijkstraVertex("B"),
@@ -209,8 +208,10 @@ public class GenerarGrafo {
             
             
             DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(vert, eges);
-            dijkstra.getShortestPath(in, fi);
-            dijkstra.printShortestPath(in, fi);
+            int c = (int) Math.floor(Math.random()*(9-0+1)+0);
+//            char fi = DijkstraVertex[c];
+//            dijkstra.getShortestPath(L, fi);
+//            dijkstra.printShortestPath(L, fi);
     }
 }
 
