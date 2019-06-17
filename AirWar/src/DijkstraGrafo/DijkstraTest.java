@@ -3,7 +3,7 @@ package DijkstraGrafo;
 public class DijkstraTest {
 
 	/**
-	 * @param argsa
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
