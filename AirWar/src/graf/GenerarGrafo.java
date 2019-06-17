@@ -89,6 +89,9 @@ public class GenerarGrafo {
             
             System.out.println(vertices[i] +  "," + vertices[i].getX() +  "," + vertices[i].getY() +  "," + vertices[i].getTipo());	
             System.out.println(vertices[i].getVecinos() + "\n");  
+//            Dijkdtra d = null;
+            
+//            d.encontrarRutaMinimaFuerzaBruta(vertices[0].getVecino(0).getVertice1(), vertices[3].getVecino(0).getVertice2());
         }
         
         //Sacamos nuevamente las adyacencias y los triángulos originales han perdido sus bases
@@ -138,7 +141,6 @@ public class GenerarGrafo {
         int indice = 0;
         
         for (int x = 0; x < 21;x++) {
-            System.out.println("+++++++++++++++++++++++");
             if(x == i ){
                 for (int y = 0; y < 11; y++) {
                     if ( y == j){

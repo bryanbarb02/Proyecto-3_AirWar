@@ -48,6 +48,7 @@ public class NewMain {
                 System.out.println("VERTICE  " +      g.vertices[i].getVecino(k).getVertice2());
                 System.out.println("VERTICE2 X  " +   g.vertices[i].getVecino(k).getVertice2().getX());
                 System.out.println("VERTICE2 Y  " +   g.vertices[i].getVecino(k).getVertice2().getY());
+                System.out.println("PESO  " +         g.vertices[i].getVecino(k).getPeso());
                 }
            
             }
