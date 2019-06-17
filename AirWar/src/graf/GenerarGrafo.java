@@ -5,6 +5,9 @@
  */
 package graf;
 
+import DijkstraGrafo.DijkstraAlgorithm;
+import DijkstraGrafo.DijkstraEdge;
+import DijkstraGrafo.DijkstraVertex;
 import Ordenamiento.CreadorDeOleadas;
 
 /**
@@ -16,6 +19,8 @@ public class GenerarGrafo {
     public Grafo miGrafo = new Grafo();
     int i;
     public Vertice [] vertices = new Vertice[10];
+    DijkstraAlgorithm dijkstra;
+    
     
     
     public void HacerGrafo(){
@@ -27,8 +32,9 @@ public class GenerarGrafo {
             int x = GenerarX();
             int y = GenerarY();
             vertices[i] = new Vertice(Character.toString(etiquetas[i]), x, y, GenerarTipo(x/50, y/50));  
-            
+				
         }
+      
         
 
         miGrafo.insertarArista(vertices[0], vertices[1], 3); // A -> B
@@ -38,16 +44,19 @@ public class GenerarGrafo {
 	miGrafo.insertarArista(vertices[3], vertices[4], 3); // D -> E
 	miGrafo.insertarArista(vertices[3], vertices[5], 3); // D -> F
 	miGrafo.insertarArista(vertices[4], vertices[5], 1); // E -> F
-
 	miGrafo.insertarArista(vertices[0], vertices[3], 3); // A -> D
 	miGrafo.insertarArista(vertices[2], vertices[4], 2); // C -> E
-        
         miGrafo.insertarArista(vertices[2], vertices[6], 2); // C -> G
         miGrafo.insertarArista(vertices[6], vertices[8], 3); // G -> I
         miGrafo.insertarArista(vertices[6], vertices[7], 2); // G -> H
         miGrafo.insertarArista(vertices[7], vertices[8], 1); // H -> I
         miGrafo.insertarArista(vertices[7], vertices[9], 2); // H -> J
         miGrafo.insertarArista(vertices[9], vertices[5], 2); // J -> F
+        
+        
+       
+        
+        
         
 //        for(int i = 0; i < vertices.length; i++) {
 //		System.out.println(vertices[i]); // Representación String de la clase Vertice para este objeto
@@ -57,17 +66,17 @@ public class GenerarGrafo {
 //	    }
 
 	//Eliminamos las adyacencias entre B <-> C
-	for(Arista arista : vertices[1].getVecinos())
-	    {
-		if(arista.getVertice2().getEtiqueta().equals("C"))
-		    miGrafo.eliminarArista(arista);
-	    }
-
-	for(Arista arista : vertices[2].getVecinos())
-	    {
-		if(arista.getVertice2().getEtiqueta().equals("B"))
-		    miGrafo.eliminarArista(arista);
-	    }
+//	for(Arista arista : vertices[1].getVecinos())
+//	    {
+//		if(arista.getVertice2().getEtiqueta().equals("C"))
+//		    miGrafo.eliminarArista(arista);
+//	    }
+//
+//	for(Arista arista : vertices[2].getVecinos())
+//	    {
+//		if(arista.getVertice2().getEtiqueta().equals("B"))
+//		    miGrafo.eliminarArista(arista);
+//	    }
 
 	//Y las adyacencias entre E <-> F
 	
@@ -77,11 +86,11 @@ public class GenerarGrafo {
 //		    miGrafo.eliminarArista(arista);
 //	    }
 
-	for(Arista arista : vertices[5].getVecinos())
-	    {
-		if(arista.getVertice2().getEtiqueta().equals("F"))
-		    miGrafo.eliminarArista(arista);
-	    }
+//	for(Arista arista : vertices[5].getVecinos())
+//	    {
+//		if(arista.getVertice2().getEtiqueta().equals("F"))
+//		    miGrafo.eliminarArista(arista);
+//	    }
         
         
         for(i = 0; i < vertices.length; i++) {
@@ -94,14 +103,15 @@ public class GenerarGrafo {
 //            d.encontrarRutaMinimaFuerzaBruta(vertices[0].getVecino(0).getVertice1(), vertices[3].getVecino(0).getVertice2());
         }
         
+        
         //Sacamos nuevamente las adyacencias y los triángulos originales han perdido sus bases
-//	for(int i = 0; i < vertices.length; i++)
-//	    {
-//	     	System.out.println(vertices[i]);
-//	    	
-//	    	for( int k = 0; k < vertices[i].getContarVecinos(); k++)
-//	    	    System.out.println(vertices[i].getVecino(k));
-//	    }
+	for(int i = 0; i < vertices.length; i++)
+	    {
+	     	System.out.println(vertices[i]);
+	    	
+	    	for( int k = 0; k < vertices[i].getContarVecinos(); k++)
+	    	    System.out.println(vertices[i].getVecino(k));
+	    }
      
     }
 
@@ -155,8 +165,53 @@ public class GenerarGrafo {
 //        return indice;
         return clases[indice];
     }
-    
-    
+    public void ruta(DijkstraVertex in, DijkstraVertex fi){
+        DijkstraVertex[] vert = {
+                                    new DijkstraVertex("A"),
+                                    new DijkstraVertex("B"),
+                                    new DijkstraVertex("C"),
+                                    new DijkstraVertex("D"),
+                                    new DijkstraVertex("E"),
+                                    new DijkstraVertex("F"),
+                                    new DijkstraVertex("G"),
+                                    new DijkstraVertex("H"),
+                                    new DijkstraVertex("I"),
+                                    new DijkstraVertex("J"),};
+        
+        
+            DijkstraVertex A = vert[0];
+            DijkstraVertex B = vert[1];
+            DijkstraVertex C = vert[2];
+            DijkstraVertex D = vert[3];
+            DijkstraVertex E = vert[4];
+            DijkstraVertex F = vert[5];
+            DijkstraVertex G = vert[6];
+            DijkstraVertex H = vert[7];
+            DijkstraVertex I = vert[8];
+            DijkstraVertex J = vert[9];
+
+            DijkstraEdge[] eges = {
+                                    new DijkstraEdge(A, B, vertices[0].getVecino(0).getPeso()),
+                                    new DijkstraEdge(A, C, vertices[0].getVecino(1).getPeso()),
+                                    new DijkstraEdge(B, C, vertices[1].getVecino(1).getPeso()),
+                                    new DijkstraEdge(B, I, vertices[1].getVecino(2).getPeso()),
+                                    new DijkstraEdge(D, E, vertices[3].getVecino(0).getPeso()),
+                                    new DijkstraEdge(D, F, vertices[3].getVecino(1).getPeso()),
+                                    new DijkstraEdge(E, F, vertices[4].getVecino(2).getPeso()),
+                                    new DijkstraEdge(A, D, vertices[0].getVecino(2).getPeso()),
+                                    new DijkstraEdge(C, E, vertices[2].getVecino(2).getPeso()),
+                                    new DijkstraEdge(C, G, vertices[2].getVecino(3).getPeso()),
+                                    new DijkstraEdge(G, I, vertices[6].getVecino(1).getPeso()),
+                                    new DijkstraEdge(G, H, vertices[6].getVecino(2).getPeso()),
+                                    new DijkstraEdge(H, I, vertices[7].getVecino(1).getPeso()),
+                                    new DijkstraEdge(H, J, vertices[7].getVecino(2).getPeso()),
+                                    new DijkstraEdge(J, F, vertices[9].getVecino(1).getPeso())};
+            
+            
+            DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(vert, eges);
+            dijkstra.getShortestPath(in, fi);
+            dijkstra.printShortestPath(in, fi);
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package Juego;
 // me cago en todo
+import DijkstraGrafo.DijkstraAlgorithm;
+import DijkstraGrafo.DijkstraVertex;
 import Ordenamiento.*;
 import graf.GenerarGrafo;
 import java.awt.Color;
@@ -22,8 +24,9 @@ import javax.swing.ImageIcon;
 public class Ventana extends JPanel implements ActionListener {
     public static int nivel = 1; //Max 7                            //Pasarian 126 cambios de alineacion
     public static int cantAviones = 10; //Max 30
-    
+     DijkstraAlgorithm dijkstra;
     public GenerarGrafo generarGrafo = new GenerarGrafo();
+    DijkstraVertex A,B,C,D,E,F,G,H,I,J;
 
     private Image image;
     
@@ -184,10 +187,12 @@ public class Ventana extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         ArrayList<Proyectil> fuego = bateriaantiaerea.getfuego();
         // Updates, acciones del bateriaantiaerea
-        bateriaantiaerea.logic();     
+        bateriaantiaerea.logic(); 
+        
         // Acciones del Dragon
         
         Avion temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
+        generarGrafo.ruta(A, B);
         while (temp != null){ // La lista tiene elementos, no está vacía
             temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
             
