@@ -192,7 +192,7 @@ public class Ventana extends JPanel implements ActionListener {
         // Acciones del Dragon
         
         Avion temp = oleada.getHead(); // Temporal con el primer elemento de la lista de la oleada
-        generarGrafo.ruta(A, B);
+////////        generarGrafo.ruta(A, B);
         while (temp != null){ // La lista tiene elementos, no está vacía
             temp.logic(); // Llama al metodo que realiza el movimineto de los Dragones 
             
